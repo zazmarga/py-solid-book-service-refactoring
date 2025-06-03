@@ -3,6 +3,7 @@ import json
 import xml.etree.ElementTree as ET
 from .model import Book
 
+
 class BookDisplayInterface(ABC):
 
     @abstractmethod
@@ -25,14 +26,14 @@ class BookSerializeInterface(ABC):
 
 
 class BookDisplay(BookDisplayInterface):
-       
+
     def display(self, book: Book, display_type: str) -> None:
         if display_type == "console":
             print(book.content)
         elif display_type == "reverse":
             print(book.content[::-1])
         else:
-            raise ValueError(f"Unknown display type: {display_type}")  
+            raise ValueError(f"Unknown display type: {display_type}")
 
 
 class BookPrint(BookPrintInterface):
@@ -62,4 +63,3 @@ class BookSerialize(BookSerializeInterface):
             return ET.tostring(root, encoding="unicode")
         else:
             raise ValueError(f"Unknown serialize type: {serialize_type}")
-
